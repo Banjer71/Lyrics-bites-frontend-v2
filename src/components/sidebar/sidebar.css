@@ -1,0 +1,20 @@
+
+.cover-art {
+	grid-column: 1/9;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.cover-art img {
+	width: 200px;
+}
+
+.record-tracks {
+	text-align: left;
+	margin-top: 10px;
+	margin-left: 50px;
+}
+
+.record-tracks li {
+	padding: 5px;
+}

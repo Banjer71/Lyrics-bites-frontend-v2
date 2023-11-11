@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
-import { Link, redirect, useNavigate } from "react-router-dom";
-import { Form, Formik, useFormik } from "formik";
+import React, { useState, useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Form, Formik} from "formik";
 import axios from "axios";
 import * as Yup from "yup";
 import FormInput from "./form-input";
@@ -32,7 +32,7 @@ const SignUp = () => {
   const [loginLoading, setLoginLoading] = useState(false);
   const [signupSuccess, setSignupSuccess] = useState();
   const [signupError, setSignupError] = useState();
-  const [redirectOnLogin, setRedirectOnLogin] = useState(false);
+  const [delayedRedirect, setDelayedRedirect] = useState(false);
 
   let navigate = useNavigate()
 
@@ -44,9 +44,11 @@ const SignUp = () => {
       authContext.setAuthState(data);
       setSignupSuccess(data.message);
       setSignupError("");
+
       setTimeout(() => {
-        setRedirectOnLogin(true);
-      }, 700);
+
+        setDelayedRedirect(true);
+      }, 1000);
     } catch (error) {
       setLoginLoading(false);
       const { data } = error.response;
@@ -55,9 +57,16 @@ const SignUp = () => {
     }
   };
 
+
+  useEffect(() => {
+    if (delayedRedirect) {
+      navigate("/displayAllSongs");
+    }
+  }, [delayedRedirect, navigate]);
+
+
   return (
     <>
-      {redirectOnLogin && navigate("/displayAllSongs")}
       <section className="signup">
         <div className="gradient-bar" />
         <Card>

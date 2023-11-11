@@ -4,6 +4,7 @@ import CheckBox from "./checkbox";
 import SongLabel from "./song-label";
 import LabelSong from "./label-song";
 import { AuthContext } from "./context/AuthContext";
+import '../css/displayallsongs.css'
 
 const DisplayAllSongs = () => {
   const auth = useContext(AuthContext);
