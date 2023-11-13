@@ -65,7 +65,7 @@ export default defineConfig(({ command, mode }) => {
         rewrite: path => path.replace('/api', ''),
       },
       '/cover': {
-        target: ' http://ws.audioscrobbler.com',
+        target: 'http://ws.audioscrobbler.com',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace('/cover', ''),
