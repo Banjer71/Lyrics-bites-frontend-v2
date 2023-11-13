@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const SideBar = ({ cover, artist, albumTitle, albumId, getAlbumTracks }) => {
     return (
         <div className="cover-art">

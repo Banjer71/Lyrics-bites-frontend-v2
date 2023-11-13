@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Link, redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Form, Formik } from "formik";
 import axios from "axios";
 import * as Yup from "yup";
@@ -30,6 +30,8 @@ const Login = () => {
   const [loginLoading, setLoginLoading] = useState(false);
   const [redirectOnLogin, setRedirectOnLogin] = useState(false);
 
+  let navigate = useNavigate()
+
   const submitCredentials = async (credentials) => {
     try {
       setLoginLoading(true);
@@ -51,7 +53,7 @@ const Login = () => {
 
   return (
     <>
-      {redirectOnLogin && redirect("/displayAllSongs")}
+      {redirectOnLogin && navigate("/displayAllSongs")}
       <section className="login">
         <div className="gradient-bar" />
         <Card>

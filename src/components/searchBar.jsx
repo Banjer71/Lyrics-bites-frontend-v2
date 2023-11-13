@@ -4,6 +4,7 @@ import Input from "./reusable/input";
 import Button from "./reusable/buttons/button";
 import Loader from "./loader";
 import ArtistCard from "./artist-card";
+import '../css/searchbar.css'
 
 const SearchBar = () => {
   const [selectParam, setSelectParam] = useState("q_artist");
@@ -44,12 +45,12 @@ const SearchBar = () => {
     }
   };
   return (
-    <div className="m-[25px]">
+   <div className="search-bar">
       <Header />
       <div className="field">
-        <form className="flex flex-col items-center mb-[30px]" onSubmit={handleSubmit}>
+      <form className="form-u" onSubmit={handleSubmit}>
           <label>Search a Song</label>
-          <select value={selectParam} onChange={getSelectionQuery} className="w-full h-[35px] mt-[20px] mb-[10px] bg-grey-100 border">
+          <select value={selectParam} onChange={getSelectionQuery}>
             <option value="q_artist">By Artist</option>
             <option value="q_track">By Song</option>
             <option value="q_lyrics">By Word</option>
@@ -67,7 +68,7 @@ const SearchBar = () => {
           </Button>
         </form>
       </div>
-      <div className="">
+      <div className="grid track">
         {isLoading ? (
           <Loader />
         ) : (

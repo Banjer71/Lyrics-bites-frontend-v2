@@ -8,7 +8,7 @@ const ArtistCard = ({ track }) => {
   const [cover, setCover] = useState("");
 
   useEffect(() => {
-    let apy_key_lastfm = '5066076ce70aa46f1b5326ea68f116c5';
+    let apy_key_lastfm = process.env.VITE_API_KEY_LASTFM;
     let albumName = track.album_name;
     let name = albumName.replace(/ /gi, "%20");
 
