@@ -15,7 +15,7 @@ const ArtistCard = ({ track }) => {
     const lastfm2 = `/?method=album.search&album=${name}&api_key=${apy_key_lastfm}&format=json`;
 
     const fetchCover = async () => {
-      const response = await fetch(`http://ws.audioscrobbler.com/cover/2.0${lastfm2}`);
+      const response = await fetch(`/cover/2.0${lastfm2}`);
       const covers = await response.json();
       const albumCover = covers.results.albummatches.album[0].image[3]["#text"];
       setCover(albumCover);
