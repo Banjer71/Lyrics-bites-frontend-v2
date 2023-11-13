@@ -55,14 +55,6 @@ export default defineConfig(({ command, mode }) => {
   css: {
     localsConvention: 'camelCase'
   },
-  build: {
-    // generate manifest.json in outDir
-    manifest: true,
-    rollupOptions: {
-      // overwrite default .html entry
-      input: '/path/to/main.js',
-    },
-  },
   server: {
     proxy: {
       '/v.1': 'http://localhost:5000',
