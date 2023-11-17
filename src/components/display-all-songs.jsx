@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { redirect } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import CheckBox from "./checkbox";
 import SongLabel from "./song-label";
 import LabelSong from "./label-song";
@@ -12,10 +12,13 @@ const DisplayAllSongs = () => {
   const [displayAll, setDisplayAll] = useState();
   const [ids, setIds] = useState([]);
 
+  let navigate = useNavigate()
+
   useEffect(() => {
     fetch(`/v.1/api/all/${authState.userInfo.email}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log('real_data:', data)
         setDisplayAll(data);
       });
   }, [authState.userInfo.email]);
@@ -63,7 +66,7 @@ const DisplayAllSongs = () => {
             {displayAll && displayAll.length !== 0 ? (
               displayAll.map((song) => {
                 return (
-                  <LabelSong key={song._id}>
+                  <LabelSong key={song.track_id}>
                     <SongLabel
                       key={song._id}
                       song={song}
@@ -88,7 +91,7 @@ const DisplayAllSongs = () => {
           </div>
         </div>
       ) : (
-        redirect("/signup")
+        navigate("/signup")
       )}
     </>
   );
