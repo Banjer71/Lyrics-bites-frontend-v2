@@ -13,7 +13,7 @@ const ArtistCard = ({ track }) => {
     // let name = albumName.replace(/ /gi, "%20");
 
     const lastfm2 = `/?method=album.search&album=${name}&api_key=${apy_key_lastfm}&format=json`;
-      const url =`https://lyrics-bites-backend-v2.vercel.app/api/cover/2.0/${albumName}`
+      const url =`https://lyrics-bites-backend-v2.vercel.app/v.1/api/cover/2.0/${albumName}`
     const fetchCover = async () => {
       const response = await fetch(url, {
         method: "GET",
