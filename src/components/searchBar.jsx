@@ -32,7 +32,7 @@ const SearchBar = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = `/v.1/api/${selectParam}/${paramToSearch}`;
+    const url = `https://lyrics-bites-backend-v2.vercel.app/api/${selectParam}/${paramToSearch}`;
     setIsLoading(true);
     //   const getData = async () => {
     //     const fetchData = await fetch(`/v.1/api/${restUrl}`);
