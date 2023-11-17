@@ -52,33 +52,25 @@ export default defineConfig(({ command, mode }) => {
       'process.env': processEnv
     },
     plugins: [react()],
-  css: {
-    localsConvention: 'camelCase'
-  },
-  build: {
-    // generate manifest.json in outDir
-    manifest: true,
-    rollupOptions: {
-      // overwrite default .html entry
-      input: '/path/to/main.js',
+    css: {
+      localsConvention: 'camelCase'
     },
-  },
-  server: {
-    proxy: {
-      '/v.1': 'http://localhost:5000',
-      '/ws': {
-        target: "https://api.musixmatch.com",
-        changeOrigin: true,
-        secure: false,
-        rewrite: path => path.replace('/api', ''),
-      },
-      '/cover': {
-        target: ' http://ws.audioscrobbler.com',
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace('/cover', ''),
-      },
-    }
-  },
+    server: {
+      proxy: {
+        '/v.1': 'http://localhost:4000',
+        // '/ws': {
+        //   target: "https://api.musixmatch.com",
+        //   changeOrigin: true,
+        //   secure: false,
+        //   rewrite: path => path.replace('/api', ''),
+        // },
+        // '/cover': {
+        //   target: ' http://ws.audioscrobbler.com',
+        //   changeOrigin: true,
+        //   secure: false,
+        //   rewrite: (path) => path.replace('/cover', ''),
+        // },
+      }
+    },
   }
 })

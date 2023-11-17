@@ -8,19 +8,23 @@ const ArtistCard = ({ track }) => {
   const [cover, setCover] = useState("");
 
   useEffect(() => {
-    let apy_key_lastfm = '5066076ce70aa46f1b5326ea68f116c5';
+    let apy_key_lastfm = process.env.VITE_API_KEY_LASTFM;
     let albumName = track.album_name;
-    let name = albumName.replace(/ /gi, "%20");
+    // let name = albumName.replace(/ /gi, "%20");
 
     const lastfm2 = `/?method=album.search&album=${name}&api_key=${apy_key_lastfm}&format=json`;
-
+      const url =`/v.1/api/cover/2.0/${albumName}`
     const fetchCover = async () => {
-      const response = await fetch(`/cover/2.0${lastfm2}`);
+      const response = await fetch(url, {
+        method: "GET",
+        headers: { "Content-type": "application/json" },
+      });
       const covers = await response.json();
-      const albumCover = covers.results.albummatches.album[0].image[3]["#text"];
-      setCover(albumCover);
+      console.log(covers)
+      // const albumCover = covers.results.albummatches.album[0].image[3]["#text"];
+      setCover(covers);
     };
-    fetchCover().catch((err) => console.log(err));
+    fetchCover()
   }, [track.album_name]);
 
   return (
