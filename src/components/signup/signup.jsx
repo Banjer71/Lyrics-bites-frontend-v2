@@ -40,7 +40,6 @@ const SignUp = () => {
     try {
       setLoginLoading(true);
       const { data } = await axios.post("https://lyrics-bites-backend-v2.vercel.app/v.1/api/signup", credentials);
-      console.log(data);
       authContext.setAuthState(data);
       setSignupSuccess(data.message);
       setSignupError("");
