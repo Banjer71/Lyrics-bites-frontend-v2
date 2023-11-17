@@ -35,7 +35,7 @@ const Login = () => {
   const submitCredentials = async (credentials) => {
     try {
       setLoginLoading(true);
-      const { data } = await axios.post("/v.1/api/authenticate", credentials);
+      const { data } = await axios.post("https://lyrics-bites-backend-v2.vercel.app/v.1/api/authenticate", credentials);
       console.log(data);
       authContext.setAuthState(data);
       setLoginSuccess(data.message);
