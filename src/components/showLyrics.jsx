@@ -15,7 +15,7 @@ const ShowLyrics = () => {
     let navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`/v.1/api/song/${_id}`)
+        fetch(`https://lyrics-bites-backend-v2.vercel.app/api/song/${_id}`)
             .then((res) => res.json())
             .then((data) => {
                 console.log("data: ", data.words);
@@ -28,7 +28,7 @@ const ShowLyrics = () => {
     }, [_id]);
 
     const deleteSong = () => {
-        fetch(`/v.1/api/song/${_id}`, {
+        fetch(`https://lyrics-bites-backend-v2.vercel.app/api/song/${_id}`, {
             method: "DELETE",
         })
             .then((res) => res.json())
@@ -46,7 +46,7 @@ const ShowLyrics = () => {
             userEmail: auth.authState.userInfo.email,
         };
         try {
-            await fetch(`/v.1/api/send_email`, {
+            await fetch(`https://lyrics-bites-backend-v2.vercel.app/api/send_email`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
