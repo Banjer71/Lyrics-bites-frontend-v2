@@ -15,7 +15,7 @@ const DisplayAllSongs = () => {
   let navigate = useNavigate()
 
   useEffect(() => {
-    fetch(`${process.env.DOMAIN}/all/${authState.userInfo.email}`)
+    fetch(`https://lyrics-bites-backend-v2.vercel.app/v.1/api/all/${authState.userInfo.email}`)
       .then((res) => res.json())
       .then((data) => {
         console.log('real_data:', data)
@@ -24,7 +24,7 @@ const DisplayAllSongs = () => {
   }, [authState.userInfo.email]);
 
   const deleteAllSongs = () => {
-    fetch(`${process.env.DOMAIN}/all/${authState.userInfo.email}`, {
+    fetch(`https://lyrics-bites-backend-v2.vercel.app/v.1/api/all/${authState.userInfo.email}`, {
       method: "DELETE",
     }).then((res) => res.json());
     setDisplayAll([]);
