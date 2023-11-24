@@ -14,7 +14,7 @@ const SearchBar = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = `${process.env.DOMAIN}/v.1/api/${selectParam}/${paramToSearch}`;
+    const url = `${process.env.VITE_API_KEY_DOMAIN}/v.1/api/${selectParam}/${paramToSearch}`;
     setIsLoading(true);
 
     const getData = async () => {
