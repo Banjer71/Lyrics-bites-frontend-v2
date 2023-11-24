@@ -12,39 +12,10 @@ const SearchBar = () => {
   const [tune, setTune] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const musicMatch = process.env.VITE_API_KEY_MUSICMATCH;
-  //   const restUrl = `track.search?${selectParam}=${paramToSearch}&page_size=4&page=6&page_size=6&f_has_lyrics=1&s_track_rating=desc&apikey=${musicMatch}`;
-  //   setIsLoading(true);
-
-  //   const getData = async () => {
-  //     const fetchData = await fetch(`/v.1/api/${restUrl}`);
-  //     const data = await fetchData.json();
-  //     const info = data.message.body.track_list;
-  //     console.log(info)
-  //     setTune(info);
-  //     setIsLoading(false);
-  //     setParamToSerach("");
-  //   };
-  //   getData();
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = `https://lyrics-bites-backend-v2.vercel.app/v.1/api/${selectParam}/${paramToSearch}`;
+    const url = `${process.env.DOMAIN}/${selectParam}/${paramToSearch}`;
     setIsLoading(true);
-    //   const getData = async () => {
-    //     const fetchData = await fetch(`/v.1/api/${restUrl}`);
-    //     const data = await fetchData.json();
-    //     const info = data.message.body.track_list;
-    //     console.log(info)
-    //     setTune(info);
-    //     setIsLoading(false);
-    //     setParamToSerach("");
-    //   };
-    //   getData();
-    // };
 
     const getData = async () => {
       const res = await fetch(url, {
