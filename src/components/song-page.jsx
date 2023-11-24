@@ -54,7 +54,7 @@ const SongPage = (props) => {
 
         const songFecth = async () => {
             const response = await fetch(
-                `https://lyrics-bites-backend-v2.vercel.app/v.1/api/songs/${trackId}/${songTrack}/${idAlbum}/${album}`, { signal }
+                `${process.env.DOMAIN}/songs/${trackId}/${songTrack}/${idAlbum}/${album}`, { signal }
             )
 
             const songsData = await response.json();
@@ -77,28 +77,6 @@ const SongPage = (props) => {
             } else {
                 setCover(defImage);
             }
-
-            // const lyrics = songsData.lyrics.lyrics_body;
-            // const songTitle = songsData.songTitle[1].track.track_name;
-            // const albumTracksList = songsData.albumTracksList[0].track.track_name
-            // console.log(';;;;;;;;;', albumTracksList)
-            // const coverAlbum = songsData.coverAlbum;
-            // if (typeof lyrics !== "undefined") {
-            //     setLyric(lyrics);
-            //     setCopyright(lyrics.lyrics_copyright);
-            // } else {
-            //     return;
-            // }
-            // setSongTitle(songTitle);
-            // setAlbumId(albumTracksList);
-            // if (typeof coverAlbum !== "undefined") {
-            //     setCover(coverAlbum.image[3]["#text"]);
-            //     setArtist(coverAlbum.artist);
-            //     setAlbumTitle(coverAlbum.name);
-            // } else {
-            //     setCover(defImage);
-            // }
-            // console.log(coverAlbum)
         };
         songFecth()
     }, [state])
@@ -122,7 +100,7 @@ const SongPage = (props) => {
 
         const fetchAlbumTracks = async () => {
             const response = await fetch(
-                `https://lyrics-bites-backend-v2.vercel.app/v.1/api/albumTrack/${idTrack}/${idAlbum}`
+                `${process.env.DOMAIN}/albumTrack/${idTrack}/${idAlbum}`
             )
             const data = await response.json();
             console.log('data: ', data)
@@ -154,7 +132,7 @@ const SongPage = (props) => {
                 userEmail: auth.authState.userInfo.email,
             };
             console.log(dataToSave)
-            await fetch(`https://lyrics-bites-backend-v2.vercel.app/v.1/api/song`, {
+            await fetch(`${process.env.DOMAIN}/song`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

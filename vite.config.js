@@ -57,7 +57,7 @@ export default defineConfig(({ command, mode }) => {
     },
     server: {
       proxy: {
-        '/v.1': 'http://localhost:4000',
+        '/v.1/api': 'http://localhost:4000/',
         // '/ws': {
         //   target: "https://api.musixmatch.com",
         //   changeOrigin: true,
