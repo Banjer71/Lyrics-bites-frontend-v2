@@ -14,8 +14,9 @@ const SearchBar = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = `${process.env.VITE_API_KEY_DOMAIN}/v.1/api/${selectParam}/${paramToSearch}`;
+    const url = `https://lyrics-bites-backend-v2.vercel.app/v.1/api/${selectParam}/${paramToSearch}`;
     setIsLoading(true);
+
 
     const getData = async () => {
       const res = await fetch(url, {
