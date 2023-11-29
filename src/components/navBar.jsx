@@ -25,14 +25,14 @@ const Navbar = () => {
         <Link to={auth.isAuthenticated() ? "/displayAllSongs" : "/login"}>
           <li>My List</li>
         </Link>
-        <Link to={auth.isAuthenticated() ? "/displayAllSongs" : "/signup"}>
+        <Link to={auth.isAuthenticated() ? "/profile" : "/signup"}>
           <li>
             {authState.userInfo.firstName
               ? authState.userInfo.firstName
               : "Signup"}
           </li>
         </Link>
-        <li onClick={handleLogout} className="cursor-pointer">
+        <li onClick={handleLogout} style={{cursor: 'pointer'}}>
           {auth.isAuthenticated() ? "Logout" : "Login"}
         </li>
 

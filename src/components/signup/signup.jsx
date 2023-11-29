@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Form, Formik} from "formik";
+import { Form, Formik } from "formik";
 import axios from "axios";
 import * as Yup from "yup";
 import FormInput from "./form-input";
@@ -14,6 +14,7 @@ import "./signup.css";
 import { AuthContext } from "../context/AuthContext";
 
 const initialValues = {
+  nickName: "",
   firstName: "",
   lastName: "",
   email: "",
@@ -21,6 +22,7 @@ const initialValues = {
 };
 
 const validationSchema = Yup.object().shape({
+  nickName: Yup.string().required("Nick name is required"),
   firstName: Yup.string().required("First name is required"),
   lastName: Yup.string().required("Last name is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -39,7 +41,7 @@ const SignUp = () => {
   const submitCredentials = async (credentials) => {
     try {
       setLoginLoading(true);
-      const { data } = await axios.post("https://lyrics-bites-backend-v2.vercel.app/v.1/api/signup", credentials);
+      const { data } = await axios.post(`${process.env.VITE_API_URL}/signup`, credentials);
       console.log(data);
       authContext.setAuthState(data);
       setSignupSuccess(data.message);
@@ -94,9 +96,19 @@ const SignUp = () => {
                     <input type="hidden" name="remember" value="true" />
                     <div className="form-container">
                       <div className="signup-field">
+
+                      <div className="nickname-field">
+                          <Label text="Nickname" />
+                          <FormInput
+                            ariaLabel="Nickname"
+                            name="nickName"
+                            type="text"
+                            placeholder="Nickname"
+                          />
+                        </div>
+                       
                         <div className="firstname-field">
                           <Label text="First Name" />
-
                           <FormInput
                             ariaLabel="First Name"
                             name="firstName"

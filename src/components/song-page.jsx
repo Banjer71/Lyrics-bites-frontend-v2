@@ -54,7 +54,7 @@ const SongPage = (props) => {
 
         const songFecth = async () => {
             const response = await fetch(
-                `${process.env.DOMAIN}/songs/${trackId}/${songTrack}/${idAlbum}/${album}`, { signal }
+                `${process.env.VITE_API_URL}/songs/${trackId}/${songTrack}/${idAlbum}/${album}`, { signal }
             )
 
             const songsData = await response.json();
@@ -100,7 +100,7 @@ const SongPage = (props) => {
 
         const fetchAlbumTracks = async () => {
             const response = await fetch(
-                `${process.env.DOMAIN}/albumTrack/${idTrack}/${idAlbum}`
+                `${process.env.VITE_API_URL}/albumTrack/${idTrack}/${idAlbum}`
             )
             const data = await response.json();
             console.log('data: ', data)
@@ -116,8 +116,6 @@ const SongPage = (props) => {
                         : null;
                 });
 
-            //         .catch((error) => console.log(error));
-
         }
         fetchAlbumTracks()
     };
@@ -132,7 +130,7 @@ const SongPage = (props) => {
                 userEmail: auth.authState.userInfo.email,
             };
             console.log(dataToSave)
-            await fetch(`${process.env.DOMAIN}/song`, {
+            await fetch(`${process.env.VITE_API_URL}/song`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

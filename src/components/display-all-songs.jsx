@@ -15,7 +15,7 @@ const DisplayAllSongs = () => {
   let navigate = useNavigate()
 
   useEffect(() => {
-    fetch(`${process.env.DOMAIN}/all/${authState.userInfo.email}`)
+    fetch(`${process.env.VITE_API_URL}/all/${authState.userInfo.email}`)
       .then((res) => res.json())
       .then((data) => {
         console.log('real_data:', data)
@@ -24,7 +24,7 @@ const DisplayAllSongs = () => {
   }, [authState.userInfo.email]);
 
   const deleteAllSongs = () => {
-    fetch(`${process.env.DOMAIN}/all/${authState.userInfo.email}`, {
+    fetch(`${process.env.VITE_API_URL}/all/${authState.userInfo.email}`, {
       method: "DELETE",
     }).then((res) => res.json());
     setDisplayAll([]);
@@ -43,7 +43,7 @@ const DisplayAllSongs = () => {
 
   const removeSongsById = () => {
     const remainingSong = displayAll.filter((song) => !ids.includes(song._id));
-    fetch(`${process.env.DOMAIN}/delete/`, {
+    fetch(`${process.env.VITE_API_URL}/delete/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

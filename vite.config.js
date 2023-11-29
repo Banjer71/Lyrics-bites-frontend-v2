@@ -37,6 +37,7 @@ import react from '@vitejs/plugin-react'
 const cherryPickedKeys = [
   "VITE_API_KEY_MUSICMATCH",
   "VITE_API_KEY_LASTFM",
+  "VITE_API_URL"
 ];
 
 
@@ -57,19 +58,7 @@ export default defineConfig(({ command, mode }) => {
     },
     server: {
       proxy: {
-        '/v.1/api': 'http://localhost:4000/',
-        // '/ws': {
-        //   target: "https://api.musixmatch.com",
-        //   changeOrigin: true,
-        //   secure: false,
-        //   rewrite: path => path.replace('/api', ''),
-        // },
-        // '/cover': {
-        //   target: ' http://ws.audioscrobbler.com',
-        //   changeOrigin: true,
-        //   secure: false,
-        //   rewrite: (path) => path.replace('/cover', ''),
-        // },
+        '/v.1/api': 'http://localhost:4000',
       }
     },
   }
