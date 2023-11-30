@@ -2,14 +2,14 @@ import React from 'react'
 import { AuthProvider } from "./components/context/AuthContext";
 import ToastMessageProvider from "./components/context/toastMessage";
 import { Routes, Route, useParams } from 'react-router-dom'
-import SearchBar from "./components/searchBar";
-import SongPage from './components/song-page';
+import SearchBar from "./components/search-bar/searchBar";
+import SongPage from './components/song-page/song-page';
 import SignUp from './components/signup/signup';
-import DisplayAllSongs from './components/display-all-songs'
+import DisplayAllSongs from './components/display-all-songs/display-all-songs'
 import Login from './components/login/login';
-import Navbar from './components/navBar';
-import ShowLyrics from './components/showLyrics'
-import UserProfile from './components/profile'
+import Navbar from './components/navbar/navBar';
+import ShowLyrics from './components/show-lyrics/showLyrics'
+import UserProfile from './components/profile/profile'
 
 const App = () => {
   return (

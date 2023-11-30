@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import { redirect, useNavigate } from "react-router-dom";
-import CheckBox from "./checkbox";
-import SongLabel from "./song-label";
-import LabelSong from "./label-song";
-import { AuthContext } from "./context/AuthContext";
-import '../css/displayallsongs.css'
+import CheckBox from "../reusable/checkbox";
+import SongLabel from "../song-label/song-label";
+import LabelSong from "../label-song/label-song";
+import { AuthContext } from "../context/AuthContext";
+import '../../css/displayallsongs.css'
 
 const DisplayAllSongs = () => {
   const auth = useContext(AuthContext);
@@ -43,7 +43,7 @@ const DisplayAllSongs = () => {
 
   const removeSongsById = () => {
     const remainingSong = displayAll.filter((song) => !ids.includes(song._id));
-    fetch(`${process.env.VITE_API_URL}/delete/`, {
+    fetch(`${process.env.DOMAIN}/delete/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

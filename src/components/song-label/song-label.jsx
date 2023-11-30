@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../css/songlabel.css";
+import "../../css/songlabel.css";
 
 const SongLabel = ({ song, children, displayAll }) => {
   return (

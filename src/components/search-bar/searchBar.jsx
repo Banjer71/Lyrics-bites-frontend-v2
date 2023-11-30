@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Header from "./header";
-import Input from "./reusable/input";
-import Button from "./reusable/buttons/button";
-import Loader from "./loader";
-import ArtistCard from "./artist-card";
-import '../css/searchbar.css'
+import Header from "../header/header";
+import Input from "../reusable/input";
+import Button from "../reusable/buttons/button";
+import Loader from "../reusable/loader";
+import ArtistCard from "../artist-card/artist-card";
+import '../../css/searchbar.css'
 
 const SearchBar = () => {
   const [selectParam, setSelectParam] = useState("q_artist");
