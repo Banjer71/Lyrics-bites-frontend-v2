@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Modal from "./modal";
-import { AuthContext } from "../components/context/AuthContext";
+import Modal from "../reusable/modal";
+import { AuthContext } from "../context/AuthContext";
 
 const ShowLyrics = () => {
     const auth = useContext(AuthContext);

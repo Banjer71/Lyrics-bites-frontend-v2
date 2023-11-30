@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import defImage from "/imageDef.png";
-import Button from "../components/reusable/buttons/button";
-import ButtonSpinner from "../components/reusable/btn-spinner/btn-spinner";
-import Toast from "./reusable/toast-message/toast";
-import { ToastContext } from "./context/toastMessage";
-import SideBar from "./sidebar/sidebar";
-import { AuthContext } from "../components/context/AuthContext";
-import "../css/songpage.css";
+import Button from "../reusable/buttons/button";
+import ButtonSpinner from "../reusable/btn-spinner/btn-spinner";
+import Toast from "../reusable/toast-message/toast";
+import { ToastContext } from "../context/toastMessage";
+import SideBar from "../sidebar/sidebar";
+import { AuthContext } from "../context/AuthContext";
+import "../../css/songpage.css";
 
 const SongPage = (props) => {
     const auth = useContext(AuthContext);

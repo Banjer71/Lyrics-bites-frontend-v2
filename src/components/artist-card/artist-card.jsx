@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import defImg from "/imageDef.png";
-import "../css/artistcard.css";
+import "../../css/artistcard.css";
 
 const ArtistCard = ({ track }) => {
   console.log('track: ', track)
@@ -16,7 +16,6 @@ const ArtistCard = ({ track }) => {
         headers: { "Content-type": "application/json" },
       });
       const covers = await response.json();
-      console.log(covers)
       setCover(covers);
     };
     fetchCover()
