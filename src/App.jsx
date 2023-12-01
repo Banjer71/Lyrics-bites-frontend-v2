@@ -24,7 +24,6 @@ const App = () => {
           <Route path="/displayAllSongs" element={<DisplayAllSongs />} />
           <Route path="/showLyrics/:_id" element={<ShowLyrics />} />
           <Route path='/profile' element={<UserProfile />} />
-
         </Routes>
       </ToastMessageProvider>
     </AuthProvider>

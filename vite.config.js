@@ -24,7 +24,10 @@ export default defineConfig(({ command, mode }) => {
       globals: true,
       environment: "jsdom",
       setupFiles: "./src/test/setup",
-      css: true
+      css: true,
+      coverage: {
+        reporter: ['text', 'json', 'html'],
+      },
     },
     css: {
       localsConvention: 'camelCase'
