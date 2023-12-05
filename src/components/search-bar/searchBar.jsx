@@ -49,12 +49,12 @@ const SearchBar = () => {
     }
   };
   return (
-    <div className="search-bar">
+    <div data-testid='searchBar' className="search-bar">
       <Header />
       <div className="field">
         <form className="form-u" onSubmit={handleSubmit}>
-          <label>Search a Song</label>
-          <select value={selectParam} onChange={getSelectionQuery}>
+          <label htmlFor='select Param'>Search a Song </label>
+          <select value={selectParam} onChange={getSelectionQuery} id="select Param">
             <option value="q_artist">By Artist</option>
             <option value="q_track">By Song</option>
             <option value="q_lyrics">By Word</option>

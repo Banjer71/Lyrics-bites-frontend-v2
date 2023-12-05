@@ -16,6 +16,7 @@ const Navbar = () => {
       navigate('/login')
     }
   };
+
   return (
     <div>
       <ul className="navbar">
@@ -32,7 +33,7 @@ const Navbar = () => {
               : "Signup"}
           </li>
         </Link>
-        <li onClick={handleLogout} style={{cursor: 'pointer'}}>
+        <li onClick={handleLogout} style={{ cursor: 'pointer' }}>
           {auth.isAuthenticated() ? "Logout" : "Login"}
         </li>
 
