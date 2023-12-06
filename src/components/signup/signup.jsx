@@ -76,7 +76,7 @@ const SignUp = () => {
             <div className="signup-fields-wrapper">
               <div className="form-header">
                 <div className="form-logo">
-                  <img src={Vinyl} alt="Logo" />
+                  <img src={Vinyl} alt="Record icon for signup/login form" />
                 </div>
                 <h2 className="signup-title">Sign up for an account</h2>
                 <p className="signup-text">
