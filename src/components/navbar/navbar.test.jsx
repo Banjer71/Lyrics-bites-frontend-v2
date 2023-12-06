@@ -1,10 +1,20 @@
-import {render, screen} from '@testing-library/react'
-import { expect} from "vitest";
+import React from 'react'
+import { render, screen } from '../../test-utils'
+import { expect, vi } from "vitest";
+
 import Navbar from "./navBar"
 
-
-test.skip('render the subtitle of the component', () => {
+test('if the login/logout button is present', () => {
     render(<Navbar />);
-    // const text = screen.getByText('Home');
-    // expect(text).toBeInTheDocument();
+    const homeLink = screen.getByRole('link', { name: 'Home' })
+    expect(homeLink).toBeInTheDocument()
+    const myListLink = screen.getByRole('link', { name: 'My List' })
+    expect(myListLink).toBeInTheDocument()
+    const signupLink = screen.getByRole('link', { name: 'Signup' })
+    expect(signupLink).toBeInTheDocument()
+    const loginElement = screen.getByText('Login', { selector: 'li' });
+    expect(loginElement).toBeInTheDocument();
+    const logoutElement = screen.queryByText('Logout', { selector: 'li' });
+    expect(logoutElement).not.toBeInTheDocument();
+      
 })

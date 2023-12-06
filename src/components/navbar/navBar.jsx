@@ -33,9 +33,16 @@ const Navbar = () => {
               : "Signup"}
           </li>
         </Link>
-        <li onClick={handleLogout} style={{ cursor: 'pointer' }}>
-          {auth.isAuthenticated() ? "Logout" : "Login"}
-        </li>
+        {auth.isAuthenticated() ? (
+          <li onClick={handleLogout} style={{ cursor: 'pointer' }}>
+            Logout
+          </li>
+        ) : (
+          <li onClick={handleLogout} style={{ cursor: 'pointer' }}>
+            Login
+          </li>
+        )}
+
 
       </ul>
     </div>
