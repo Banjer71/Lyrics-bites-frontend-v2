@@ -16,5 +16,4 @@ test('if the login/logout button is present', () => {
     expect(loginElement).toBeInTheDocument();
     const logoutElement = screen.queryByText('Logout', { selector: 'li' });
     expect(logoutElement).not.toBeInTheDocument();
-      
 })

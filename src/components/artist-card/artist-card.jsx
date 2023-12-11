@@ -16,13 +16,14 @@ const ArtistCard = ({ track }) => {
         headers: { "Content-type": "application/json" },
       });
       const covers = await response.json();
+      console.log('covers: ', covers)
       setCover(covers);
     };
     fetchCover()
   }, [track.album_name]);
 
   return (
-    <div className="card">
+    <div className="card" data-testid='album'>
       {cover ? <img src={cover} alt="pic" /> : <img src={defImg} alt="pic" />}
       <Link
         className="card-link"

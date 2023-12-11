@@ -24,7 +24,7 @@ const SearchBar = () => {
       });
 
       const data = await res.json();
-      console.log(data)
+      console.log('data: ', data)
       let song = data.map((item) => item.track);
       setTune(song);
       setIsLoading(false);
