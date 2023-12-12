@@ -84,11 +84,12 @@ const DisplayAllSongs = () => {
             ) : (
               <p style={{ textAlign: "center" }}>Your songs list is empty</p>
             )}
-            <button type="button" onClick={removeSongsById}>
-              Delete Selected Product(s)
-            </button>
-            <button onClick={deleteAllSongs}>Delete all songs</button>
           </div>
+          <button type="button" onClick={removeSongsById}>
+            Delete Selected Product(s)
+          </button>
+          <button onClick={deleteAllSongs}>Delete all songs</button>
+
         </div>
       ) : (
         navigate("/signup")

@@ -30,7 +30,7 @@ const UserProfile = () => {
 
             <img src='/user-placeholder-pics.jpg' alt='user photo' className='user-photo' />
             {userProfile && userProfile.map(user => (
-                <div className='user-detail-card'>
+                <div className='user-detail-card' key={user._id}>
                     <div className='user-info' >Nickname: <span>{user.nickName}</span></div>
                     <div className='user-info'>Full name: <span>{user.firstName}</span></div>
                     <div className='user-info'>email: <span>{user.email}</span></div>
