@@ -7,7 +7,7 @@ export const handlers = [
         return HttpResponse.json(
             [
                 {
-                    "tradavideck": {
+                    "track": {
                         "track_id": 257880609,
                         "track_name": "Fearless (feat. Pilani Bubu)",
                         "track_name_translation_list": [],
@@ -207,11 +207,11 @@ export const handlers = [
             ]
         )
     }),
-    // http.get(`/v.1/api/cover/2.0/${albumName}`, ({params}) => {
-    //     const {albumName} = params
-    //     return HttpResponse.json(
-
-    //     )
-    // })
+    http.get(`http:localhost:4000/v.1/api/cover/2.0/:albumName`, ({params}) => {
+        const {albumName} = params
+        return HttpResponse.json(
+            'https://lastfm.freetls.fastly.net/i/u/300x300/949b7472c0184b30cbab265144b88039.png'
+        )
+    })
 ]
 

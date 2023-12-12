@@ -28,8 +28,8 @@ const Navbar = () => {
         </Link>
         <Link to={auth.isAuthenticated() ? "/profile" : "/signup"}>
           <li>
-            {authState.userInfo.firstName
-              ? authState.userInfo.firstName
+            {authState.userInfo.nickName
+              ? authState.userInfo.nickName
               : "Signup"}
           </li>
         </Link>

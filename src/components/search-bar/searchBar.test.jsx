@@ -53,11 +53,12 @@ describe('SearchBar', () => {
 
     test('if clicking the button we have an array of 4 objects', async () => {
         userEvent.setup()
-        render(<SearchBar />)
+        
+        render(<ArtistCard album={'prince'}/>)
         const buttonElement = screen.getByRole('button', { name: /get songs/i })
         expect(buttonElement).toBeInTheDocument()
         userEvent.click(buttonElement)
-        expect(screen.findByText(/loading.../i)).toBeInTheDocument()
+        expect(await screen.findByText(/loading.../i)).toBeVisible()
     })
 
 
