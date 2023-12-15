@@ -12,9 +12,17 @@ const SearchBar = () => {
   const [tune, setTune] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
+  let apiUrl;
+
+  if (import.meta.env.MODE === 'test') {
+    apiUrl = process.env.VITE_API_TEST_URL;
+  } else {
+    apiUrl = process.env.VITE_API_URL;
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = `${process.env.VITE_API_URL}/${selectParam}/${paramToSearch}`;
+    const url = `${apiUrl}/${selectParam}/${paramToSearch}`;
     setIsLoading(true);
 
     const getData = async () => {
