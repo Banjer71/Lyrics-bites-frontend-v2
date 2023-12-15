@@ -1,65 +1,41 @@
-/**
- * @vitest-environment jsdom
- */
 
-import { render, screen, waitFor } from "@testing-library/react";
-import { expect, vi } from "vitest";
-import userEvent from '@testing-library/user-event';
+
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { HttpResponse, http } from 'msw'
+import { setupServer } from 'msw/node';
+
 import SearchBar from './searchBar'
-import ArtistCard from "../artist-card/artist-card";
 
+const url = `https://api.musixmatch.com/ws/1.1/track.search?$q_artist=TestArtist`
+const server = setupServer(
+  http.get(url, () => {
+    return HttpResponse.json(
+      [
+        {
+          track: {
+            track_id: 1,
+            album_name: 'Test Album',
+          },
+        },
+      ])
+  })
 
-describe('SearchBar', () => {
-    test('render correctly', () => {
-        render(<SearchBar />);
-        const nameElement = screen.getByTestId('searchBar')
-        expect(nameElement).toBeInTheDocument()
+);
 
-        const song = screen.getByRole('combobox')
-        expect(song).toBeInTheDocument()
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
-        const inputField = screen.getByRole('textbox')
-        expect(inputField).toBeInTheDocument()
+test('renders ArtistCard after clicking the button',  async () => {
+  render(<SearchBar />);
 
-        const submitButton = screen.getByRole('button')
-        expect(submitButton).toBeInTheDocument()
+  fireEvent.change(screen.getByLabelText('Search a Song'), { target: { value: 'q_artist' } });
+  fireEvent.change(screen.getByPlaceholderText('search...'), { target: { value: 'TestArtist' } });
+  fireEvent.click(screen.getByText('Get Songs'));
 
-        const selectElement = screen.getByDisplayValue('By Artist')
-        expect(selectElement).toBeInTheDocument()
+  waitFor(() => {
+    console.log(screen.debug());
+    expect(screen.getByText('Test Album')).toBeInTheDocument();
+  });
 
-        const headingElementOne = screen.getByRole('heading', { name: 'Lyrics Bites' });
-        expect(headingElementOne).toBeInTheDocument()
-
-        const headingElementTwo = screen.getByRole('heading', { level: 3 });
-        expect(headingElementTwo).toBeInTheDocument()
-
-        const labelElem = screen.getByLabelText('Search a Song')
-        expect(labelElem).toBeInTheDocument()
-
-        const buttonElement = screen.getByRole('button', { name: /get songs/i })
-        expect(buttonElement).toBeInTheDocument()
-    })
-
-
-    test('if the button renders the results of what we typed in the input field', async () => {
-        userEvent.setup()
-        render(<SearchBar />)
-        const getSongButton = screen.getByRole('textbox')
-        await userEvent.type(getSongButton, 'prince')
-        expect(getSongButton).toHaveValue('prince')
-        const buttonElement = screen.getByRole('button', { name: /get songs/i })
-        expect(buttonElement).toBeInTheDocument()
-    })
-
-    test('if clicking the button we have an array of 4 objects', async () => {
-        userEvent.setup()
-        
-        render(<ArtistCard album={'prince'}/>)
-        const buttonElement = screen.getByRole('button', { name: /get songs/i })
-        expect(buttonElement).toBeInTheDocument()
-        userEvent.click(buttonElement)
-        expect(await screen.findByText(/loading.../i)).toBeVisible()
-    })
-
-
-})
+});

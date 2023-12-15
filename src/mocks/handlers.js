@@ -1,6 +1,5 @@
 
 import { HttpResponse, http, delay } from 'msw'
-const url = `http:localhost:4000/v.1/api/:selectParam/:artist`
 
 export const handlers = [
     http.get(url, async ({params}) => {
@@ -207,11 +206,6 @@ export const handlers = [
             ]
         )
     }),
-    http.get(`http:localhost:4000/v.1/api/cover/2.0/:albumName`, ({params}) => {
-        const {albumName} = params
-        return HttpResponse.json(
-            'https://lastfm.freetls.fastly.net/i/u/300x300/949b7472c0184b30cbab265144b88039.png'
-        )
-    })
+    
 ]
 
