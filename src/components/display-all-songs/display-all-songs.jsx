@@ -43,7 +43,7 @@ const DisplayAllSongs = () => {
 
   const removeSongsById = () => {
     const remainingSong = displayAll.filter((song) => !ids.includes(song._id));
-    fetch(`${process.env.DOMAIN}/delete/`, {
+    fetch(`${process.env.VITE_API_URL}/delete/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

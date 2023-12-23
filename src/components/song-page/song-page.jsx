@@ -11,7 +11,6 @@ import "../../css/songpage.css";
 
 const SongPage = (props) => {
     const auth = useContext(AuthContext);
-
     let navigate = useNavigate();
     let { state } = useLocation();
     const [lyric, setLyric] = useState("");
@@ -82,7 +81,7 @@ const SongPage = (props) => {
     }, [state])
 
 
-
+// bug found on this function , need to be fixed, clicking on the song always render no lyrics into the db
 
     const getAlbumTracks = (idTrack, idAlbum, ...state) => {
         console.log(state)
@@ -103,10 +102,11 @@ const SongPage = (props) => {
                 `${process.env.VITE_API_URL}/albumTrack/${idTrack}/${idAlbum}`
             )
             const data = await response.json();
-            console.log('data: ', data)
             const lyric = data.data[0].message.body.lyrics;
-            console.log(lyric);
-            setLyric(lyric.lyrics_body);
+            if (data.data[0].message.body.length > 0) {
+                setLyric(lyric.lyrics_body);
+            }
+                setLyric('No Lyrics on the database');
 
             const songName = data.data[1].message.body.track_list;
             songName &&
@@ -129,7 +129,6 @@ const SongPage = (props) => {
                 words: lyric,
                 userEmail: auth.authState.userInfo.email,
             };
-            console.log(dataToSave)
             await fetch(`${process.env.VITE_API_URL}/song`, {
                 method: "POST",
                 headers: {
