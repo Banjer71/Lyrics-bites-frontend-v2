@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
-import { redirect, useNavigate } from "react-router-dom";
+/* eslint-disable no-undef */
+import  { useEffect, useState, useContext } from "react";
+import {  useNavigate } from "react-router-dom";
 import CheckBox from "../reusable/checkbox";
 import SongLabel from "../song-label/song-label";
 import LabelSong from "../label-song/label-song";
@@ -18,7 +19,6 @@ const DisplayAllSongs = () => {
     fetch(`${process.env.VITE_API_URL}/all/${authState.userInfo.email}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log('real_data:', data)
         setDisplayAll(data);
       });
   }, [authState.userInfo.email]);
@@ -66,7 +66,7 @@ const DisplayAllSongs = () => {
             {displayAll && displayAll.length !== 0 ? (
               displayAll.map((song) => {
                 return (
-                  <LabelSong key={song.track_id}>
+                  <LabelSong key={song._id}>
                     <SongLabel
                       key={song._id}
                       song={song}

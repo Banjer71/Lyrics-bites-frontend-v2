@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable no-undef */
+import { useState } from "react";
 import Header from "../header/header";
 import Input from "../reusable/input";
 import Button from "../reusable/buttons/button";
