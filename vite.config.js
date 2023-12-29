@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 
+
 const cherryPickedKeys = [
   "VITE_API_KEY_MUSICMATCH",
   "VITE_API_KEY_LASTFM",
@@ -24,7 +25,10 @@ export default defineConfig(({ command, mode }) => {
       globals: true,
       environment: "jsdom",
       setupFiles: "./src/test/setup",
-      css: true
+      css: true,
+      coverage: {
+        reporter: ['text', 'json', 'html'],
+      },
     },
     css: {
       localsConvention: 'camelCase'

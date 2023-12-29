@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import defImg from "/imageDef.png";
 import "../../css/artistcard.css";
 
 const ArtistCard = ({ track }) => {
-  console.log('track: ', track)
   const [cover, setCover] = useState("");
 
   useEffect(() => {
@@ -22,7 +21,7 @@ const ArtistCard = ({ track }) => {
   }, [track.album_name]);
 
   return (
-    <div className="card">
+    <div className="card" data-testid='album'>
       {cover ? <img src={cover} alt="pic" /> : <img src={defImg} alt="pic" />}
       <Link
         className="card-link"
