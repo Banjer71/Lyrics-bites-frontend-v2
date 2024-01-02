@@ -70,7 +70,7 @@ const ShowLyrics = () => {
       _id,
     };
     try {
-      await fetch(`${process.env.VITE_API_URL}/schedule`, {
+      await fetch(`${process.env.VITE_API_URL}/schedule/${frequency}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
