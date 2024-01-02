@@ -27,7 +27,7 @@ const SearchBar = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = `${apiUrl}/${selectParam}/${paramToSearch}`;
+    const url = `https://lyrics-bites-backend-v2.vercel.app/v.1/api/${selectParam}/${paramToSearch}`;
     setIsLoading(true);
 
 
