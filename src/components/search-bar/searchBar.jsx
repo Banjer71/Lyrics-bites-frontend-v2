@@ -23,6 +23,8 @@ const SearchBar = () => {
     apiUrl = process.env.VITE_API_KEY_DOMAIN
   }
 
+  console.log(apiUrl)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = `${apiUrl}/${selectParam}/${paramToSearch}`;
