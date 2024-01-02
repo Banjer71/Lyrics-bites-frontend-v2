@@ -20,7 +20,7 @@ const Navbar = () => {
   return (
     <div>
       <ul className="navbar">
-        <Link to="/">
+        <Link to="/" onClick={() => localStorage.removeItem('state')}>
           <li>Home</li>
         </Link>
         <Link to={auth.isAuthenticated() ? "/displayAllSongs" : "/login"}>
