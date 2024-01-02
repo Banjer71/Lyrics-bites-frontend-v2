@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
-import { redirect, useNavigate } from "react-router-dom";
-import CheckBox from "./checkbox";
-import SongLabel from "./song-label";
-import LabelSong from "./label-song";
-import { AuthContext } from "./context/AuthContext";
-import '../css/displayallsongs.css'
+/* eslint-disable no-undef */
+import  { useEffect, useState, useContext } from "react";
+import {  useNavigate } from "react-router-dom";
+import CheckBox from "../reusable/checkbox";
+import SongLabel from "../song-label/song-label";
+import LabelSong from "../label-song/label-song";
+import { AuthContext } from "../context/AuthContext";
+import '../../css/displayallsongs.css'
 
 const DisplayAllSongs = () => {
   const auth = useContext(AuthContext);
@@ -15,16 +16,15 @@ const DisplayAllSongs = () => {
   let navigate = useNavigate()
 
   useEffect(() => {
-    fetch(`https://lyrics-bites-backend-v2.vercel.app/v.1/api/all/${authState.userInfo.email}`)
+    fetch(`${process.env.VITE_API_URL}/all/${authState.userInfo.email}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log('real_data:', data)
         setDisplayAll(data);
       });
   }, [authState.userInfo.email]);
 
   const deleteAllSongs = () => {
-    fetch(`https://lyrics-bites-backend-v2.vercel.app/v.1/api/all/${authState.userInfo.email}`, {
+    fetch(`${process.env.VITE_API_URL}/all/${authState.userInfo.email}`, {
       method: "DELETE",
     }).then((res) => res.json());
     setDisplayAll([]);
@@ -43,7 +43,7 @@ const DisplayAllSongs = () => {
 
   const removeSongsById = () => {
     const remainingSong = displayAll.filter((song) => !ids.includes(song._id));
-    fetch(`${process.env.DOMAIN}/delete/`, {
+    fetch(`${process.env.VITE_API_URL}/delete/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +66,7 @@ const DisplayAllSongs = () => {
             {displayAll && displayAll.length !== 0 ? (
               displayAll.map((song) => {
                 return (
-                  <LabelSong key={song.track_id}>
+                  <LabelSong key={song._id}>
                     <SongLabel
                       key={song._id}
                       song={song}
@@ -84,11 +84,12 @@ const DisplayAllSongs = () => {
             ) : (
               <p style={{ textAlign: "center" }}>Your songs list is empty</p>
             )}
-            <button type="button" onClick={removeSongsById}>
-              Delete Selected Product(s)
-            </button>
-            <button onClick={deleteAllSongs}>Delete all songs</button>
           </div>
+          <button type="button" onClick={removeSongsById}>
+            Delete Selected Product(s)
+          </button>
+          <button onClick={deleteAllSongs}>Delete all songs</button>
+
         </div>
       ) : (
         navigate("/signup")

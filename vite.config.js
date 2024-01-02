@@ -1,42 +1,11 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
-// export default defineConfig({
-//   plugins: [react()],
-//   css: {
-//     localsConvention: 'camelCase'
-//   },
-//   build: {
-//     // generate manifest.json in outDir
-//     manifest: true,
-//     rollupOptions: {
-//       // overwrite default .html entry
-//       input: '/path/to/main.js',
-//     },
-//   },
-//   server: {
-//     proxy: {
-//       '/v.1': 'http://localhost:5000',
-//       '/ws': {
-//         target: "https://api.musixmatch.com",
-//         changeOrigin: true,
-//         secure: false,
-//         rewrite: path => path.replace('/api', ''),
-//       },
-//       '/cover': {
-//         target: ' http://ws.audioscrobbler.com',
-//         changeOrigin: true,
-//         secure: false,
-//         rewrite: (path) => path.replace('/cover', ''),
-//       },
-//     }
-//   },
-// })
 
 const cherryPickedKeys = [
   "VITE_API_KEY_MUSICMATCH",
   "VITE_API_KEY_LASTFM",
+  "VITE_API_URL"
 ];
 
 
@@ -52,24 +21,21 @@ export default defineConfig(({ command, mode }) => {
       'process.env': processEnv
     },
     plugins: [react()],
+    test: {
+      globals: true,
+      environment: "jsdom",
+      setupFiles: "./src/test/setup",
+      css: true,
+      coverage: {
+        reporter: ['text', 'json', 'html'],
+      },
+    },
     css: {
       localsConvention: 'camelCase'
     },
     server: {
       proxy: {
         '/v.1/api': 'http://localhost:4000/',
-        // '/ws': {
-        //   target: "https://api.musixmatch.com",
-        //   changeOrigin: true,
-        //   secure: false,
-        //   rewrite: path => path.replace('/api', ''),
-        // },
-        // '/cover': {
-        //   target: ' http://ws.audioscrobbler.com',
-        //   changeOrigin: true,
-        //   secure: false,
-        //   rewrite: (path) => path.replace('/cover', ''),
-        // },
       }
     },
   }

@@ -54,7 +54,7 @@ const SongPage = (props) => {
 
         const songFecth = async () => {
             const response = await fetch(
-                `https://lyrics-bites-backend-v2.vercel.app/v.1/api/songs/${trackId}/${songTrack}/${idAlbum}/${album}`, { signal }
+                `${process.env.VITE_API_URL}/songs/${trackId}/${songTrack}/${idAlbum}/${album}`, { signal }
             )
 
             const songsData = await response.json();
@@ -100,7 +100,7 @@ const SongPage = (props) => {
 
         const fetchAlbumTracks = async () => {
             const response = await fetch(
-                `https://lyrics-bites-backend-v2.vercel.app/v.1/api/albumTrack/${idTrack}/${idAlbum}`
+                `${process.env.VITE_API_URL}/albumTrack/${idTrack}/${idAlbum}`
             )
             const data = await response.json();
             console.log('data: ', data)
@@ -130,7 +130,7 @@ const SongPage = (props) => {
                 userEmail: auth.authState.userInfo.email,
             };
             console.log(dataToSave)
-            await fetch(`https://lyrics-bites-backend-v2.vercel.app/v.1/api/song`, {
+            await fetch(`${process.env.VITE_API_URL}/song`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

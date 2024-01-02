@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { AuthContext } from "./context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import "../css/navbar.css";
+import "../../css/navbar.css";
 
 const Navbar = () => {
   const auth = useContext(AuthContext);
@@ -16,25 +16,33 @@ const Navbar = () => {
       navigate('/login')
     }
   };
+
   return (
     <div>
       <ul className="navbar">
-        <Link to="/">
+        <Link to="/" onClick={() => localStorage.removeItem('state')}>
           <li>Home</li>
         </Link>
         <Link to={auth.isAuthenticated() ? "/displayAllSongs" : "/login"}>
           <li>My List</li>
         </Link>
-        <Link to={auth.isAuthenticated() ? "/displayAllSongs" : "/signup"}>
+        <Link to={auth.isAuthenticated() ? "/profile" : "/signup"}>
           <li>
-            {authState.userInfo.firstName
-              ? authState.userInfo.firstName
+            {authState.userInfo.nickName
+              ? authState.userInfo.nickName
               : "Signup"}
           </li>
         </Link>
-        <li onClick={handleLogout} className="cursor-pointer">
-          {auth.isAuthenticated() ? "Logout" : "Login"}
-        </li>
+        {auth.isAuthenticated() ? (
+          <li onClick={handleLogout} style={{ cursor: 'pointer' }}>
+            Logout
+          </li>
+        ) : (
+          <li onClick={handleLogout} style={{ cursor: 'pointer' }}>
+            Login
+          </li>
+        )}
+
 
       </ul>
     </div>
