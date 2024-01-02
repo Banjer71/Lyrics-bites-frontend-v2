@@ -28,6 +28,7 @@ const SearchBar = () => {
     const url = `${apiUrl}/${selectParam}/${paramToSearch}`;
     setIsLoading(true);
 
+
     const getData = async () => {
       const res = await fetch(url, {
         method: "GET",
