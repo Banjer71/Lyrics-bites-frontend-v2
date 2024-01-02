@@ -17,8 +17,10 @@ const SearchBar = () => {
 
   if (import.meta.env.MODE === 'test') {
     apiUrl = process.env.VITE_API_TEST_URL;
-  } else {
+  } else if (import.meta.env.MODE === 'development') {
     apiUrl = process.env.VITE_API_URL;
+  } else {
+    apiUrl = process.env.VITE_API_KEY_DOMAIN
   }
 
   const handleSubmit = async (e) => {
