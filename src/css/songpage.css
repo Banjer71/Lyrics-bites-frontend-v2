@@ -48,6 +48,7 @@ pre {
 
 .cover-art img {
 	width: 200px;
+	box-shadow: 5px 5px 10px #999;
 }
 
 .record-tracks {
@@ -66,7 +67,7 @@ pre {
 		margin-top: 80px;
 	}
 	.song-text {
-		grid-column: 2/9;
+		grid-column: 3/9;
 		margin: 10px;
 		grid-row: 1;
 	}

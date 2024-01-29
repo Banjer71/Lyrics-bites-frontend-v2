@@ -11,6 +11,7 @@ const ShowLyrics = () => {
   const [lyrics, setLyrics] = useState();
   const [artist, setArtist] = useState();
   const [songTitle, setSongTitle] = useState();
+  const [songId, setSongId] = useState()
 
   const { _id } = useParams();
   let navigate = useNavigate();
@@ -19,9 +20,11 @@ const ShowLyrics = () => {
     fetch(`${process.env.VITE_API_URL}/song/${_id}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         setLyrics(data.words);
         setArtist(data.artistName);
         setSongTitle(data.songTitle);
+        setSongId(data.trackId)
       });
   }, [_id]);
 
@@ -61,14 +64,16 @@ const ShowLyrics = () => {
     }
   }
 
-  const scheduleSendSongViaMail = async (frequency, lyrics, _id, songTitle) => {
+  const scheduleSendSongViaMail = async (frequency, lyrics, _id, songTitle, songId) => {
     const dataSchedule = {
+      songId,
       songTitle,
       frequency,
       lyrics,
       userEmail: auth.authState.userInfo.email,
       _id,
     };
+    console.log(dataSchedule)
     try {
       await fetch(`${process.env.VITE_API_URL}/schedule/${frequency}`, {
         method: "POST",
@@ -79,6 +84,7 @@ const ShowLyrics = () => {
       })
         .then((res) => res.json())
         .then((data) => {
+          console.log(data)
           setIsOpen(true);
           setEmailStatus(data.message);
         });
@@ -105,17 +111,17 @@ const ShowLyrics = () => {
         </div>
         <div className="split-btn">
           <button
-            onClick={() => scheduleSendSongViaMail(1, lyrics, _id, songTitle)}
+            onClick={() => scheduleSendSongViaMail(1, lyrics, _id, songTitle, songId)}
           >
             Every day
           </button>
           <button
-            onClick={() => scheduleSendSongViaMail(3, lyrics, _id, songTitle)}
+            onClick={() => scheduleSendSongViaMail(3, lyrics, _id, songTitle, songId)}
           >
             Every 3 days
           </button>
           <button
-            onClick={() => scheduleSendSongViaMail(2, lyrics, _id, songTitle)}
+            onClick={() => scheduleSendSongViaMail(2, lyrics, _id, songTitle, songId)}
           >
             Every 2 days
           </button>
