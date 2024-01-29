@@ -184,7 +184,7 @@ const SongPage = () => {
           </Button>
 
           <Link to="/">
-            <Button>Back to the HomePage</Button>
+            <Button onClick={() => localStorage.removeItem('state')}>Back to the HomePage</Button>
           </Link>
         </div>
         <Toast position="top-right" autoClose={2000} />

@@ -12,6 +12,7 @@
   .track .card img {
     margin-left: 20px;
     max-width: 40%;
+    box-shadow: 5px 5px 10px #999;
   }
   
   .track .card .card-link {
